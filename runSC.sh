@@ -86,7 +86,7 @@ if [ "$SEL" == "Y" ]; then
   DST=""
   canMove=1
 elif [ "$SEL" == "N" ]; then
-  echo "Provide full path to dir where captures go (don't use \` shortcuts):"
+  echo "Provide full path to dir where captures go (don't use \` or \~ shortcuts):"
   read path
   DST=path
   canMove=
