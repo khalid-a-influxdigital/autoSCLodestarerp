@@ -1,7 +1,6 @@
 #!/bin/bash
 
-#A few important filepaths--edit these paths so they point to actual locations
-#on your machine
+#A few important filepaths
 pLoad=~/Desktop/autoSC/phantomLoad.js
 oLoad=~/Desktop/autoSC/otherPageLoad.js
 cook=~/Desktop/autoSC/cookez
@@ -107,7 +106,7 @@ fi
 done
 
 #Directories we'll place our screenshots in, nice and tidy
-mkdir splashpage_SC lode_admin mid_admin mid_user res_user
+mkdir splashpage_SC lode_admin mid_admin mid_user
 cd splashpage_SC
 
 #Grab screenshot of splashpage
