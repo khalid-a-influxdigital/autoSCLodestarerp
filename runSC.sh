@@ -1,6 +1,7 @@
 #!/bin/bash
 
-#A few important filepaths
+#A few important filepaths--edit these paths so they point to actual locations
+#on your machine
 pLoad=~/Desktop/autoSC/phantomLoad.js
 oLoad=~/Desktop/autoSC/otherPageLoad.js
 cook=~/Desktop/autoSC/cookez
@@ -19,30 +20,30 @@ function phantom_grab()
   curling dashboard dashboard
   mkdir midi flcstr pgtr
   cd midi  
-  curling midigator/dashboard midiDashboard
-  curling midigator/analytics midiAnalytics
+  curling midigator/dashboard midiDashboard $1 $2
+  curling midigator/analytics midiAnalytics $1 $2
   mkdir account_tabs
   cd account_tabs
-  curling midigator/accounts midiAccounts 
-  curling midigator/accounts midiAccounts 1
-  curling midigator/accounts midiAccounts 2
-  curling midigator/accounts midiAccounts 3
+  curling midigator/accounts midiAccounts $1 $2
+  curling midigator/accounts midiAccounts $1 $2 1
+  curling midigator/accounts midiAccounts $1 $2 2
+  curling midigator/accounts midiAccounts $1 $2 3
   echo "Patience is a virtue :) ..."
   cd ..
   mkdir manager_tabs
   cd manager_tabs
-  curling midigator/manager midiManager 
-  curling midigator/manager midiManager 1
-  curling midigator/manager midiManager 2
-  curling midigator/manager midiManager 3
+  curling midigator/manager midiManager $1 $2 
+  curling midigator/manager midiManager $1 $2 1
+  curling midigator/manager midiManager $1 $2 2
+  curling midigator/manager midiManager $1 $2 3
   cd ..
   mkdir ppackage_tabs
   cd ppackage_tabs
-  curling midigator/presentmentpackage midiPPackage 
-  curling midigator/presentmentpackage midiPPackage 1
+  curling midigator/presentmentpackage midiPPackage $1 $2
+  curling midigator/presentmentpackage midiPPackage $1 $2 1
   cd ..
-  curling midigator/\help \help
-  curling midigator/profile profile
+  curling midigator/\help \help $1 $2
+  curling midigator/profile profile $1 $2
   
   cd ..
   cd ..
@@ -56,11 +57,11 @@ function phantom_admin_grab()
   mkdir admin
   cd admin
 
-  curling admin admin_main
-  curling admin/accounts admin_accounts
-  curling admin/companies admin_companies
-  curling admin/crms admin_crms
-  curling admin/jobqueue admin_jobqueue
+  curling admin admin_main $1 $2
+  curling admin/accounts admin_accounts $1 $2
+  curling admin/companies admin_companies $1 $2
+  curling admin/crms admin_crms $1 $2
+  curling admin/jobqueue admin_jobqueue $1 $2
 
   cd ..
   cd ..
@@ -70,7 +71,7 @@ function phantom_admin_grab()
 #Grab HTML from website, add absolute paths to images, and screenshot locally
 #Mind the 5-second delay now, it's to make sure the tables have loaded on the website
 function curling(){
-  phantomjs --cookies-file=$cook $pLoad https://lodestarerp.com/$1 $2 $3 &>/dev/null 
+  phantomjs --cookies-file=$cook $pLoad https://lodestarerp.com/$1 $2 $3 $4 $5 &>/dev/null 
   sed -i.bak "s|href=/|href=https://lodestarerp.com|" $2.html
   rm $2.html.bak
   
@@ -132,7 +133,7 @@ cd ..
 cd lode_admin
 phantom_grab kalmande Adboom123
 cd lode_admin
-phantom_admin_grab kalmandeAdboom123
+phantom_admin_grab kalmande Adboom123
 
 cd mid_admin
 phantom_grab anna@lodestarerp.com Jellybean1

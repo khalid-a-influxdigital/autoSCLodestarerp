@@ -5,11 +5,10 @@ var fs = require('fs');
 
 //Script to login to lodestar, used when we've been kicked
 //from the page we actually wanted.
-//Khalid's credentials are used here.
-var loginToPage = function(){
+var loginToPage = function(arg){
     var frm = document.getElementById("login-form");
-    frm.elements["user_name"].value = 'kalmande';
-    frm.elements["user_password"].value = 'Adboom123';
+    frm.elements["user_name"].value = arg[3];
+    frm.elements["user_password"].value = arg[4];
     frm.elements["_token"].value = 'Yb1vz1hiBpl2ffE4wGosMRzOzjRtxfQbESiHNXnX'
     frm.submit();
 }
@@ -34,20 +33,20 @@ page.onLoadFinished = function(){
     //a login via the login script above
     if(page.title == "Lodestar"){
         console.log('Evaluating...');
-        page.evaluate(loginToPage);
+        page.evaluate(loginToPage, args);
         return;
     }
     //If we've navigated to the right page, wait 5 seconds for
     //tables to load before screenshotting/pulling HTML
     else{
-        if(args[3] != null){
-            console.log("Clicking tab " + args[3] + "...");
-            page.evaluate(tabRoll, args[3]);
+        if(args[5] != null){
+            console.log("Clicking tab " + args[5] + "...");
+            page.evaluate(tabRoll, args[5]);
         }
         window.setTimeout(function() {
             console.log('Rendering...');
-            if(args[3] != null){
-                page.render(args[2] + "_tab" + args[3] + ".jpg");
+            if(args[5] != null){
+                page.render(args[2] + "_tab" + args[5] + ".jpg");
             }
             else{
                 page.render(args[2] + '.jpg');
